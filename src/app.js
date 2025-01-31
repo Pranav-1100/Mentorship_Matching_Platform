@@ -22,7 +22,16 @@ const app = express();
 
 // Middleware
 app.use(helmet());
-app.use(cors());
+const corsOptions = {
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['*'], // Allow all headers
+  credentials: false // Disable credentials when allowing all origins
+};
+
+app.use(cors(corsOptions));
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
